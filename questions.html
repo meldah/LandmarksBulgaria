@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv=“content-language“ content=“bg“ />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1" /> 
+	<meta name="author" content="Melda Harlova">
+	<title>Забележителности в България | Добре дошли</title>
+	<link rel="stylesheet" type="text/css" href="style-1.css">
+</head>
+<body>
+<div>
+	<header>
+		<div class="container">
+			<div id="sec">
+				<h1><span class="highlight">З</span>абележителности в <span class="highlight">Б</span>ългария</h1>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.html">Начало</a></li>
+					<li><a href="statii.html">Статии</a></li>
+					<li class="dropdown">Региони
+								<ul class="nav-content">
+									<li><a href="rodopi.html">Родопи</a></li>
+									<li><a href="szapad.html">Северозападна България</a></li>
+									<li><a href="centralna.html">Централна България</a></li>
+									<li><a href="yzapad.html">Югозападна България</a></li>
+								</ul>
+					</li>	
+					<li><a href="gallery.html">Галерия</a></li>
+					<li><a href="questions.html">Въпроси</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	</div>
+	
+<div >
+	
+
+	<section id="boxes">
+		<div class="container boxes-container" >
+		<div class="form" >
+			<form id="myForm" name="contact" method="post" onSubmit="return formValidation(this)" action="#" >
+
+			<p>
+			<label for='FirstName'>Име:</label>
+			<input type="text" id="FirstName" name="FirstName" min="1" maxlength="15" required  oninvalid="this.setCustomValidity('Това поле е задължително!')"
+    oninput="setCustomValidity('')">
+			</p>
+			<p>
+			<label for='LastName'>Фамилия:</label>
+			<input type="text" id="LastName" name="LastName" min="1" maxlength="25" required oninvalid="this.setCustomValidity('Това поле е задължително!')"
+    oninput="setCustomValidity('')">
+			</p>
+			<p>
+			<label for='EMail'>Имейл:</label>
+			<input type="email" id="EMail" name="EMail" required oninvalid="this.setCustomValidity('Това поле е задължително!')"
+    oninput="setCustomValidity('')">
+			</p>
+			<p>
+			<label for='Phone'>Телефон:</label>
+			<input type="text" id="Phone" name="Phone"  required oninvalid="this.setCustomValidity('Това поле е задължително!')"
+    oninput="setCustomValidity('')">
+			</p>
+			<p>
+			<label for='Questions'> Въпроси: </label>
+			<textarea name="Questions" rows="15" cols="50" id="questions" min="5" maxlength="300" required oninvalid="this.setCustomValidity('Това поле е задължително!')"
+    oninput="setCustomValidity('')"></textarea>
+			</p>
+			<p>
+				<input type="submit" name="submit" value="Изпрати" onclick="clearForm()">
+			</p>
+
+			 </div>
+			</form>
+
+			
+		</div>
+	</section>
+</div>
+<div align="center">
+<button class="button-info" onclick="loadXMLDoc()"> Информация за нас </button>
+<p id="info"> </p>
+
+
+</div>
+
+
+	<footer>
+		<div class="Footer_inner_left">
+		<p>Copyright &copy;2018 Забележителности в България </p>
+		</div>
+		<div class="Footer_inner_right">
+		<p>
+		<form>
+		  Search:
+		  <input type="search" name="search">
+		  <input type="submit" value="Търси">
+		</form>
+		</p>
+		</div>
+	</footer>
+
+	
+	<script>
+	function formValidation()
+	{
+		"use strict";
+
+		var fname = document.contact.FirstName;
+		var lname = document.contact.LastName;
+		var phone= document.contact.Phone;
+		var question = document.contact.Questions;
+
+
+		if(allLetterF(fname))
+		{
+		if(allLetterL(lname))
+		{ 
+		if(allNum(phone))
+		{
+		if(isValidQuestion(question))
+		{
+
+		}
+		}
+		} 
+		}
+
+		return false;
+	}
+
+
+	function allNum(number)
+	{
+		"use strict";
+		var letters = /^[0-9]{10}$/;
+		if(number.value.match(letters))
+		{
+		return true;
+		}
+		else
+		{
+		alert('Моля да въведете 10 цифри в полето за телефон');
+		number.focus();
+		return false;
+		}
+	}
+	function allLetterL(name)
+	{ 
+		"use strict";
+		var letters = /^[A-Za-z]+$/;
+		if(name.value.match(letters))
+		{
+		return true;
+		}
+		else
+		{
+		alert('Полето за фамилия трябва да съдържа само букви');
+		name.focus();
+		return false;
+		}
+	}
+
+	
+	function allLetterF(name)
+	{ 
+		"use strict";
+		var letters = /^[A-Za-z]+$/;
+		if(name.value.match(letters))
+		{
+		return true;
+		}
+		else
+		{
+		alert('Полето за име трябва да съдържа само букви');
+		name.focus();
+		return false;
+		}
+	}
+
+	function isValidQuestion(question)
+	{	
+		"use strict";
+		var question_len = question.value.length;
+		if (question_len < 5)
+		{
+		alert("Вашият въпрос съдържа малко символи!" );
+		question.focus();
+		return false;
+		}
+		else
+		{
+		alert('Вашият въпрос е изпратен');
+		window.location.reload()
+		return true;
+		}
+
+	}
+	
+	function clearForm() {
+		"use strict";
+		if(document.getElementById) {
+		document.myForm.reset();
+		}
+	}
+	
+	function loadXMLDoc() 
+	{
+	  "use strict";
+	  var xmlhttp;
+	  if (window.XMLHttpRequest) 
+	  {
+		xmlhttp = new XMLHttpRequest();
+	  } else 
+	  {
+		// code for older browsers
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+		xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		  document.getElementById("info").innerHTML =
+		  this.responseText;
+			}
+		};
+		xmlhttp.open("GET", "xmlhtttp.txt", true);
+		xmlhttp.send('');
+	}
+
+</script>
+	
+	  
+
+</body>
+</html>
